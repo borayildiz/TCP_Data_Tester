@@ -1,0 +1,142 @@
+#:kivy 1.5
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import ListItemButton kivy.uix.listview.ListItemButton
+#: import ListItemLabel kivy.uix.listview.ListItemLabel
+#: import ListProperty kivy.properties.ListProperty
+
+<Controller>:
+    BoxLayout:
+        orientation: 'horizontal'
+        GridLayout:
+            rows: 4
+            cols: 1
+            padding: 10
+            padding: 10
+            orientation: 'vertical'
+            Label:
+                size_hint_y: None
+                height: 40
+                text: 'TCP CLIENT'
+                color: [1, 1, 0, 1]
+            GridLayout:
+                size_hint_y: None
+                height: 80
+                rows: 1
+                cols: 3
+                orientation: 'vertical'
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: ''
+                    Button:
+                        id: ConnectButton
+                        height: 40
+                        text: root.client_connect_state
+                        on_press: root.tcp_client_connect(send_button)
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'IP Address'
+                    TextInput:
+                        size_hint_y: None
+                        height: 40
+                        id: tcp_client_ip_text
+                        text: root.local_ip
+                BoxLayout:
+                    orientation: 'vertical'
+                    Label:
+                        text: 'Port'
+                    TextInput:
+                        size_hint_y: None
+                        height: 40
+                        id: tcp_client_port_text
+                        text: '8000'
+            TextInput:
+                id: tcp_client_send_text
+                text: ''
+                readonly: False
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: 80
+                Button:
+                    id: send_button
+                    text: 'Send'
+                    on_press: root.tcp_client_send(send_button)
+                Button:
+                    text: 'Clear'
+                    on_press: tcp_client_send_text.text = ''
+
+
+        Splitter:
+            max_size: 400
+            min_size: 400
+            GridLayout:
+                rows: 3
+                cols: 1
+                padding: 10
+                orientation: 'horizontal'
+                Label:
+                    text: 'TCP SERVER'
+                    size_hint_y: None
+                    height: 40
+                    color: [1, 1, 0, 1]
+                BoxLayout:
+                    orientation: 'horizontal'
+                    size_hint_y: None
+                    height: 80
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Label:
+                            text: ''
+                        ToggleButton:
+                            size_hint_y: None
+                            height: 40
+                            id: listen_button
+                            text: root.listen_state
+                            on_press: root.tcp_server_listen(listen_button)
+                    BoxLayout:
+                        orientation: 'vertical'
+                        Label:
+                            text: 'Port'
+                        TextInput:
+                            size_hint_y: None
+                            height: 40
+                            id: tcp_server_port_text
+                            text: '8000'
+                BoxLayout:
+                    orientation: 'vertical'
+                    TextInput:
+                        id: tcp_server_listening_text
+                        text: ''
+                        readonly: True
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: 80
+                        Button:
+                            size_hint_y: None
+                            height: 80
+                            text: 'Clear'
+                            on_press: tcp_server_listening_text.text = ''
+                        Button:
+                            size_hint_y: None
+                            height: 80
+                            text: 'Get Client List'
+                            on_press: root.server_get_client_list()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
